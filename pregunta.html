@@ -31,7 +31,7 @@
     
 	<div>
 
-		<form style="float: left" id='fpreguntas' name='fpreguntas' action=InsertarPregunta.php method="post">
+		<form  onreset="rmvImg()" style="float: left" id='fpreguntas' name='fpreguntas' action=InsertarPregunta.php method="post">
 
 			<table>	
 				
@@ -89,6 +89,7 @@
 				<input id="fileChos" type="file" name="pic" accept="image/*"  onchange="showImg(this)">
 				<br>
 				<input  style="margin-top: 20px" id="submit" type="submit" value="Enviar Pregunta"></td>
+				<input style="margin-top: 20px" id="rst" type="reset" value="Borrar campos e imagen"></td>
 
 		</form>
 
@@ -105,6 +106,11 @@
 
 
 <script>
+
+	function rmvImg(){
+			$('#imgPrev').remove();	   						
+	}
+
 
 	function showImg(input){
 
