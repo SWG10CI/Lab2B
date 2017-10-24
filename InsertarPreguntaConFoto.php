@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -41,24 +41,29 @@
 			}
 
 			//Insertar los datos
-			$preguntas=mysqli_query($link, "SELECT * FROM preguntas");
 
-			//Error al consultar
-			if (!$preguntas)
+
+
+			if ($_FILES['pic']['size'] == 0 ){
+				$pic = addslashes(file_get_contents("img/imgPrev.png"));	
+			}			
+			else{
+				$pic = addslashes(file_get_contents($_FILES['pic']['tmp_name']));
+			}
+
+			
+
+			$sql= "INSERT INTO preguntas(email, enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema,img) VALUES ('$_POST[mail]','$_POST[enunciado]','$_POST[Rcor]','$_POST[RIncor1]','$_POST[RIncor2]','$_POST[RIncor3]',$_POST[complej],'$_POST[tema]', '$pic')";
+
+			//Error al insertar
+			if (!mysqli_query($link ,$sql))
 			 { 	
 				die('Error: ' . mysqli_error($link));
 				echo "No se ha podido insertar";
 			 }
 
-			 //Crear la tabla
 
-			 echo '<table border=1> <tr> <th> Email </th> <th> Enunciado </th><th> RCorrecta </th> <th> RIncorrecta1 </th> <th> RIncorrecta2 </th> <th> RIncorrecta3</th> <th> Complejidad </th> <th> Tema </th>
-				</tr>';
-				while ($row = mysqli_fetch_array($preguntas)) {
-				echo '<tr><td>' . $row["email"] . '</td> <td>' . $row["enunciado"] .'</td> <td>' . $row["correcta"] .'</td> <td>' . $row["incorrecta1"] .'</td> <td>' . $row["incorrecta2"] .'</td> <td>' . $row["incorrecta3"] .'</td> <td>' . $row["complejidad"] .'</td> <td>' . $row["tema"] .'</td></tr>';
-				}
-				echo '</table>';
-
+			 echo 'Se ha guardado la pregunta correctamente<br><br><a href="VerPreguntasConFoto.php">Ver todas las preguntas</a>';
 
 			// Cerrar conexión
 			mysqli_close($link);

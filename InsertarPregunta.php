@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -34,7 +34,7 @@
 
 			//Contectar con la base de datos 
 
-			$link = mysqli_connect("localhost", "root", "", "quiz");
+			$link = mysqli_connect("localhost", "id2956012_swg10", "SWG10", "id2956012_quiz");
 			if (!$link)
 			{
 			 echo "Fallo al conectar a MySQL: " . $link->connect_error;

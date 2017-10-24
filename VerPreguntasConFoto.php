@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -28,7 +28,7 @@
 	</nav>
     <section class="main" id="s1">
     
-	<div style="float: left;">
+	<div style="float: left; overflow: scroll; height: 300px; ">
 		
 		<?php
 
@@ -52,12 +52,22 @@
 
 			 //Crear la tabla
 
-			 echo '<table border=1> <tr> <th> Email </th> <th> Enunciado </th><th> RCorrecta </th> <th> RIncorrecta1 </th> <th> RIncorrecta2 </th> <th> RIncorrecta3</th> <th> Complejidad </th> <th> Tema </th>
+			 echo '<table border=1> <tr> <th> Email </th> <th> Enunciado </th><th> RCorrecta </th> <th> RIncorrecta1 </th> <th> RIncorrecta2 </th> <th> RIncorrecta3</th> <th> Complejidad </th> <th> Tema </th><th>Imagen</th>
 				</tr>';
 				while ($row = mysqli_fetch_array($preguntas)) {
-				echo '<tr><td>' . $row["email"] . '</td> <td>' . $row["enunciado"] .'</td> <td>' . $row["correcta"] .'</td> <td>' . $row["incorrecta1"] .'</td> <td>' . $row["incorrecta2"] .'</td> <td>' . $row["incorrecta3"] .'</td> <td>' . $row["complejidad"] .'</td> <td>' . $row["tema"] .'</td></tr>';
+				echo '<tr><td>' . $row["email"] . '</td> <td>' . $row["enunciado"] .'</td> <td>' . $row["correcta"] .'</td> <td>' . $row["incorrecta1"] .'</td> <td>' . $row["incorrecta2"] .'</td> <td>' . $row["incorrecta3"] .'</td> <td>' . $row["complejidad"] .'</td> <td>' . $row["tema"] .'</td>
+				 <td>	
+
+				 	
+				 	<img style="width:50px;height:50px;float: left; border:2px solid black ; margin-left: 3px" src="data:image/jpeg;base64,'.base64_encode( $row['img'] ).'"/>		
+
+				 </td>
+
+
+				</tr>';
 				}
 				echo '</table>';
+
 
 
 			// Cerrar conexión
